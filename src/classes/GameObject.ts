@@ -62,6 +62,7 @@ export default class GameObject {
 
 	public addComponent(component: Component): void {
 		this.components.push(component)
+		component.gameObject = this
 	}
 
 	
