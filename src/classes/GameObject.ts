@@ -16,6 +16,30 @@ export default class GameObject {
 		})
 		return retVal
 	}
+
+	public static getObjectsWithComponent<T extends Component>(componentClass: new () => T): GameObject[] {
+		const retVal: GameObject[] = []
+		Object.keys(GameObject.instances).forEach((uuid: string) => {
+			const instance = GameObject.instances[uuid]
+			if (instance.components.find(c => c instanceof componentClass)) {
+				retVal.push(instance)
+			}
+		})
+		return retVal
+	}
+
+	public static getComponentsOfType<T extends Component>(componentClass: new () => T): T[] {
+		const retVal: T[] = []
+		Object.keys(GameObject.instances).forEach((uuid: string) => {
+			const gameObject = GameObject.instances[uuid]
+			gameObject.components.forEach(component => {
+				if (component instanceof componentClass) {
+					retVal.push(component)
+				}
+			})
+		})
+		return retVal
+	}
 	
 	private static instances: { [uuid: string]: GameObject } = {}
 
