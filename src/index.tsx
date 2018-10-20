@@ -1,24 +1,11 @@
 import * as THREE from 'three';
-import Events from './classes/Events';
-import Component from './classes/Component';
-import Rendering from './classes/Rendering';
-import Collision from './classes/Collision';
-import ComponentAddedEvent from './classes/events/ComponentAddedEvent';
+import GameScene from './classes/GameScene';
+import GameCamera from './classes/GameCamera';
+import { Camera } from 'three';
+import './index.css'
 
-const scene = new THREE.Scene();
-Events.addListener((event) => {
-	switch (event.constructor) {
-		case ComponentAddedEvent: {
-			const component: Component = (event as ComponentAddedEvent).component
-			switch (component.constructor) {
-				case Rendering:
-					scene.add((component as Rendering).mesh)
-				case Collision:
-					scene.add((component as Collision).collider)
-			}
-		}
-	}
-})
+const gameScene = new GameScene()
+const gameCamera = new GameCamera()
 
 let lastTick: number = Date.now()
 
@@ -31,6 +18,8 @@ function update() {
 	const d = now - lastTick
 	console.log(d)
 	lastTick = now
+	renderer.render(gameScene.scene, gameCamera.camera as Camera);
+	requestAnimationFrame(update)
 }
 
 update()

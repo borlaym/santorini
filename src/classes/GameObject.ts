@@ -57,10 +57,6 @@ export default class GameObject {
 		Events.addListener(this.handleEvent.bind(this))
 	}
 
-	protected handleEvent(event: GameEvent): void {
-		return
-	}
-
 	public getComponent<T extends Component>(componentClass: new (...args: any[]) => T): T {
 		const component = this.components.find((component: Component) => component instanceof componentClass)
 		if (!component || !(component instanceof componentClass)) {
@@ -74,6 +70,8 @@ export default class GameObject {
 		component.gameObject = this
 	}
 
-	
+	protected handleEvent(event: GameEvent): void {
+		return
+	}
 
 }
