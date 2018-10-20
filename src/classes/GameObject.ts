@@ -1,6 +1,8 @@
 import * as uuid from 'uuid'
 import Component from './Component';
 import Transform from './Transform';
+import GameEvent from './GameEvent';
+import Events from './Events';
 
 export default class GameObject {
 	public static getById<T extends GameObject>(uuid: string): GameObject | null {
@@ -52,6 +54,11 @@ export default class GameObject {
 		this.uuid = uuid.v4()
 		GameObject.instances[this.uuid] = this
 		this.addComponent(new Transform())
+		Events.addListener(this.handleEvent.bind(this))
+	}
+
+	protected handleEvent(event: GameEvent): void {
+		return
 	}
 
 	public getComponent<T extends Component>(componentClass: new (...args: any[]) => T): T {

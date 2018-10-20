@@ -14,4 +14,8 @@ export default class Rendering extends Component {
 		this.mesh.position.set(position.x, position.y, position.z)
 		this.mesh.rotation.set(rotation.x, rotation.y, rotation.z)
 	}
+
+	protected handleEvent(event: GamepadEvent): void {
+		return
+	}
 }

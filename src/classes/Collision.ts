@@ -14,4 +14,7 @@ export default class Collision extends Component {
 		this.collider.position.set(position.x, position.y, position.z)
 		this.collider.rotation.set(rotation.x, rotation.y, rotation.z)
 	}
+	protected handleEvent(event: GamepadEvent): void {
+		return
+	}
 }

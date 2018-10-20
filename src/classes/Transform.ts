@@ -8,4 +8,7 @@ export default class Transform extends Component {
 	public update(dt: number): void {
 		return
 	}
+	protected handleEvent(event: GamepadEvent): void {
+		return
+	}
 }
