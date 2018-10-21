@@ -1,13 +1,5 @@
-import GameObject from './GameObject';
-import CameraComponent from './components/Camera';
-import { Camera } from 'three';
+import { Camera, PerspectiveCamera } from 'three';
 
-export default class GameCamera extends GameObject {
-	constructor() {
-		super()
-		this.addComponent(new CameraComponent())
-	}
-	public get camera(): Camera {
-		return this.getComponent(CameraComponent).camera
-	}
+export default class GameCamera {
+	public readonly camera: Camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100)
 }

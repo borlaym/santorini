@@ -12,7 +12,6 @@ export default class GameScene {
 			switch (event.constructor) {
 				case ComponentAddedEvent: {
 					const component: Component = (event as ComponentAddedEvent).component
-					console.log(component)
 					switch (component.constructor) {
 						case Rendering:
 							this.scene.add((component as Rendering).mesh)

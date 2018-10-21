@@ -1,12 +1,15 @@
 import Component from '../Component';
 import { Object3D } from 'three';
 import Transform from './Transform';
+import Events from '../Events';
+import ComponentAddedEvent from '../events/ComponentAddedEvent';
 
 export default class Rendering extends Component {
 	constructor(
 		public readonly mesh: Object3D
 	) {
 		super()
+		Events.emit(new ComponentAddedEvent(this))
 	}
 
 	public update(dt: number): void {

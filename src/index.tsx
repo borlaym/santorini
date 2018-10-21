@@ -4,12 +4,18 @@ import GameCamera from './classes/GameCamera';
 import './index.css'
 import { Vector3 } from 'three';
 import GameWorld from './classes/GameWorld';
+import GameObject from './classes/GameObject';
+import Rendering from './classes/components/Rendering';
 
 const gameScene = new GameScene()
 const gameCamera = new GameCamera()
+gameCamera.camera.position.y = 4
+gameCamera.camera.position.z = 7
+gameCamera.camera.position.x = 2.5
+gameCamera.camera.lookAt(new Vector3(2.5, 0, 2.5))
+
 const gameWorld = new GameWorld()
-gameWorld
-gameCamera.transform.position.y = 4
+gameWorld.setup()
 
 let lastTick: number = Date.now()
 
@@ -20,10 +26,13 @@ document.body.appendChild(renderer.domElement);
 function update() {
 	const now = Date.now()
 	const d = now - lastTick
-	d
 	lastTick = now
+
+	// Update everything
+	GameObject.getComponentsOfType(Rendering).forEach(c => c.update(d))
+
+	// Render
 	renderer.render(gameScene.scene, gameCamera.camera);
-	gameCamera.camera.lookAt(new Vector3(2.5, 0, 2.5))
 	requestAnimationFrame(update)
 }
 
