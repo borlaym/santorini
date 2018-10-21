@@ -1,4 +1,4 @@
-import Component from './Component';
+import Component from '../Component';
 import { Vector3, Euler } from 'three';
 
 export default class Transform extends Component {

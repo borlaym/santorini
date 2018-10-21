@@ -1,4 +1,4 @@
-import Component from './Component';
+import Component from '../Component';
 import { Object3D } from 'three';
 import Transform from './Transform';
 

@@ -1,6 +1,6 @@
 import * as uuid from 'uuid'
 import Component from './Component';
-import Transform from './Transform';
+import Transform from './components/Transform';
 import GameEvent from './GameEvent';
 import Events from './Events';
 
@@ -68,6 +68,10 @@ export default class GameObject {
 	public addComponent(component: Component): void {
 		this.components.push(component)
 		component.gameObject = this
+	}
+
+	public get transform(): Transform {
+		return this.getComponent(Transform)
 	}
 
 	protected handleEvent(event: GameEvent): void {
