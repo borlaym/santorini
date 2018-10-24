@@ -6,6 +6,7 @@ import { Vector3 } from 'three';
 import GameWorld from './classes/GameWorld';
 import GameObject from './classes/GameObject';
 import Rendering from './classes/components/Rendering';
+import InputController from './classes/InputController';
 
 const gameScene = new GameScene()
 const gameCamera = new GameCamera()
@@ -30,6 +31,9 @@ function update() {
 
 	// Update everything
 	GameObject.getComponentsOfType(Rendering).forEach(c => c.update(d))
+
+	// Reset InputController
+	InputController.update()
 
 	// Render
 	renderer.render(gameScene.scene, gameCamera.camera);
