@@ -9,11 +9,10 @@ import Rendering from './classes/components/Rendering';
 import InputController from './classes/InputController';
 
 const gameScene = new GameScene()
-const gameCamera = new GameCamera()
-gameCamera.camera.position.y = 4
-gameCamera.camera.position.z = 7
-gameCamera.camera.position.x = 2.5
-gameCamera.camera.lookAt(new Vector3(2.5, 0, 2.5))
+GameCamera.position.y = 4
+GameCamera.position.z = 7
+GameCamera.position.x = 2.5
+GameCamera.camera.lookAt(new Vector3(2.5, 0, 2.5))
 
 const gameWorld = new GameWorld()
 gameWorld.setup()
@@ -29,14 +28,15 @@ function update() {
 	const d = now - lastTick
 	lastTick = now
 
-	// Update everything
-	GameObject.getComponentsOfType(Rendering).forEach(c => c.update(d))
-
-	// Reset InputController
+	// Update InputController
 	InputController.update()
 
+	// Update meshes
+	GameObject.getComponentsOfType(Rendering).forEach(c => c.update(d))
+
+
 	// Render
-	renderer.render(gameScene.scene, gameCamera.camera);
+	renderer.render(gameScene.scene, GameCamera.camera);
 	requestAnimationFrame(update)
 }
 
