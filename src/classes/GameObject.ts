@@ -70,6 +70,10 @@ export default class GameObject {
 		component.gameObject = this
 	}
 
+	public update(dt: number) {
+		return
+	}
+
 	public get transform(): Transform {
 		return this.getComponent(Transform)
 	}

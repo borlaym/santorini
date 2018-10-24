@@ -14,4 +14,8 @@ export default class GameWorld {
 			}
 		}
 	}
+
+	public update(dt: number) {
+		this.gameObjects.forEach(o => o.update(dt))
+	}
 }

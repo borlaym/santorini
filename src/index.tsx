@@ -7,6 +7,7 @@ import GameWorld from './classes/GameWorld';
 import GameObject from './classes/GameObject';
 import Rendering from './classes/components/Rendering';
 import InputController from './classes/InputController';
+import Collision from './classes/components/Collision';
 
 const gameScene = new GameScene()
 GameCamera.position.y = 4
@@ -25,15 +26,20 @@ document.body.appendChild(renderer.domElement);
 
 function update() {
 	const now = Date.now()
-	const d = now - lastTick
+	const dt = now - lastTick
 	lastTick = now
+
+	// Update colliders
+	GameObject.getComponentsOfType(Collision).forEach(c => c.update(dt))
 
 	// Update InputController
 	InputController.update()
 
-	// Update meshes
-	GameObject.getComponentsOfType(Rendering).forEach(c => c.update(d))
+	// Update gameObjects
+	gameWorld.update(dt)
 
+	// Update meshes
+	GameObject.getComponentsOfType(Rendering).forEach(c => c.update(dt))
 
 	// Render
 	renderer.render(gameScene.scene, GameCamera.camera);
