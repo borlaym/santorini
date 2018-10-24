@@ -5,6 +5,7 @@ import { Raycaster } from 'three';
 import GameCamera from './GameCamera';
 
 class InputController {
+	
 	public keysDown: string[] = []
 	public mousePos: { x: number, y: number } = { x: 0, y: 0 }
 	public click: boolean = false
@@ -29,7 +30,6 @@ class InputController {
 	}
 
 	public update() {
-		this.click = false
 		const collisionComponents = GameObject.getComponentsOfType(Collision)
 		const colliders = collisionComponents.map(component => component.collider)
 		const mouseRaycaster = new Raycaster();
@@ -47,6 +47,10 @@ class InputController {
 		} else {
 			this.mouseColliders = []
 		}
+	}
+
+	public reset() {
+		this.click = false
 	}
 
 	public get mousePointingAt() {

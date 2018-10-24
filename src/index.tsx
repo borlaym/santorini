@@ -41,6 +41,9 @@ function update() {
 	// Update meshes
 	GameObject.getComponentsOfType(Rendering).forEach(c => c.update(dt))
 
+	// Reset InputController
+	InputController.reset()
+
 	// Render
 	renderer.render(gameScene.scene, GameCamera.camera);
 	requestAnimationFrame(update)
